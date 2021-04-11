@@ -1,22 +1,22 @@
 console.log('%c HI', 'color: firebrick');
 
 function fetchDogs(){
- return fetch("https://dog.ceo/api/breeds/image/random/4")
+    const imgUrl = "https://dog.ceo/api/breeds/image/random/4"
+     fetch(imgUrl)
   .then(resp => resp.json())
-  .then(json => dogArray(json));
-}
+  .then(results => {
+      results.message.forEach(image => dogArray(image))
+    })
+  };
   
 function dogArray(dogs){
-    const imgUrl = document.getElementById('dog-image-container');
-    dogs.forEach(dog) => {
-        const img = document.createElement('img');
-        img.innerHTML = breeds.img;
-        div.appendChild('img');
+    let div = document.getElementById('dog-image-container');
+    let dogImage = document.createElement('img');
+    dogImage.src = dogs;
+    div.appendChild(dogImage);
       
   }
-}
 
 document.addEventListener("DOMContentLoaded", function() {
-    fetchDogs();
-  });
-  
+    fetchDogs()
+});
